@@ -1,4 +1,4 @@
-package com.pozzanghera.turmaparticipante;
+package com.pozzanghera.turmaparticipante.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
