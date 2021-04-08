@@ -1,12 +1,16 @@
 package com.pozzanghera.turmaparticipante;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 
 @Entity // This tells Hibernate to make a table out of this class
-public class Turma {
+public class Team {
   @Id
   @GeneratedValue(strategy=GenerationType.AUTO)
   private Integer id;
@@ -15,10 +19,8 @@ public class Turma {
 
   private String type;
 
-  @OneToMany
-   @JoinColumn(name="library_id")
-   private Library library;
-    
+  @OneToMany(mappedBy = "team")
+  private List<Participant> participants;
 
   public Integer getId() {
     return id;
@@ -44,12 +46,12 @@ public class Turma {
     this.type = type;
   }
 
-  public Participants getParticipants() {
-   return type;
+  public List<Participant> getParticipants() {
+   return participants;
  }
 
- public void setType(String type) {
-   this.type = type;
+ public void setParticipants(List<Participant> participants) {
+   this.participants = participants;
  }
 
 }
