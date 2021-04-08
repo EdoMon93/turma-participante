@@ -8,11 +8,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-
 @Entity // This tells Hibernate to make a table out of this class
 public class Team {
   @Id
-  @GeneratedValue(strategy=GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer id;
 
   private String description;
@@ -47,11 +46,11 @@ public class Team {
   }
 
   public List<Participant> getParticipants() {
-   return participants;
- }
+    return participants;
+  }
 
- public void setParticipants(List<Participant> participants) {
-   this.participants = participants;
- }
+  public void setParticipants(List<Participant> participants) {
+    this.participants = participants;
+  }
 
 }
