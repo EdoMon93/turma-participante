@@ -8,7 +8,7 @@ import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@Entity // This tells Hibernate to make a table out of this class
+@Entity
 public class Participant {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)

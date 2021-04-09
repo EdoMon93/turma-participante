@@ -1,18 +1,16 @@
 package com.pozzanghera.turmaparticipante.model;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
-@Entity // This tells Hibernate to make a table out of this class
+@Entity
 public class Team {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
