@@ -4,13 +4,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity // This tells Hibernate to make a table out of this class
 public class Participant {
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 
   private String name;
@@ -19,9 +20,15 @@ public class Participant {
 
   private String observations;
 
+  @JsonIgnore
   @ManyToOne
-  @JoinColumn(name = "team_id")
   private Team team;
+
+  @Override
+  public String toString() {
+    return "Participant( id:" + id + ", name:" + name + ", email:" + email + ", observations:" + observations
+        + ", team_id:" + team.getId() + ")";
+  }
 
   public Integer getId() {
     return id;
