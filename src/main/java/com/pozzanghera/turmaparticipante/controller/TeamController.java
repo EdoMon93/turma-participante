@@ -12,11 +12,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping(path = "/turma")
-public class GroupController {
+public class TeamController {
    @Autowired
    private TeamRepository teamRepository;
 
@@ -40,6 +41,12 @@ public class GroupController {
       if (teamRepository.findById(id).isPresent()) {
          return new ResponseEntity<Team>(teamRepository.findById(id).get(), HttpStatus.OK) ;
       } else
-         return null;
+         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+   }
+
+   // Get by Name
+   @GetMapping(path = "/search")
+   public @ResponseBody Iterable<Team> getByNameTurma(@RequestParam String description) {
+      return teamRepository.findByDescriptionContaining(description);
    }
 }
