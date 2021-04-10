@@ -1,6 +1,7 @@
 package com.pozzanghera.turmaparticipante.controller;
 
 import com.pozzanghera.turmaparticipante.model.Team;
+import com.pozzanghera.turmaparticipante.repository.ParticipantRepository;
 import com.pozzanghera.turmaparticipante.repository.TeamRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +23,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class TeamController {
    @Autowired
    private TeamRepository teamRepository;
+   @Autowired
+   private ParticipantRepository participantRepository;
 
    // Post
    @PostMapping(path = "/")
    public ResponseEntity<Team> postTurma(@RequestBody Team team) {
       // System.out.println(team);
+      team.getParticipants().forEach(participant -> {
+         participantRepository.save(participant);
+      });
       teamRepository.save(team);
       return new ResponseEntity<Team>(team, HttpStatus.CREATED);
    }

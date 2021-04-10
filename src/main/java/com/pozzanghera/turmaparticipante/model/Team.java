@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class Team {
   @Id
@@ -57,6 +59,7 @@ public class Team {
     return participants;
   }
 
+  @JsonIgnoreProperties("team")
   public void setParticipants(List<Participant> participants) {
     this.participants = participants;
   }

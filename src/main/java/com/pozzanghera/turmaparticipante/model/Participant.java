@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Participant {
@@ -20,7 +20,6 @@ public class Participant {
 
   private String observations;
 
-  @JsonIgnore
   @ManyToOne
   private Team team;
 
@@ -66,6 +65,7 @@ public class Participant {
     return team;
   }
 
+  @JsonIgnoreProperties("participants")
   public void setTeam(Team team) {
     this.team = team;
   }
