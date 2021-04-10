@@ -10,23 +10,24 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping(path = "/turma")
+@RequestMapping(path = "/turma", produces = "application/json")
 public class TeamController {
    @Autowired
    private TeamRepository teamRepository;
 
    // Post
    @PostMapping(path = "/new")
-   public ResponseEntity<String> postTurma(@RequestBody Team team) {
-      System.out.println(team);
+   public ResponseEntity<Team> postTurma(@RequestBody Team team) {
+      // System.out.println(team);
       teamRepository.save(team);
-      return new ResponseEntity<String>("Saved", HttpStatus.ACCEPTED);
+      return new ResponseEntity<Team>(team, HttpStatus.CREATED);
    }
 
    // Get All
@@ -39,7 +40,7 @@ public class TeamController {
    @GetMapping(path = "/{id}")
    public ResponseEntity<Team> getByIdTurma(@PathVariable Integer id) {
       if (teamRepository.findById(id).isPresent()) {
-         return new ResponseEntity<Team>(teamRepository.findById(id).get(), HttpStatus.OK) ;
+         return new ResponseEntity<Team>(teamRepository.findById(id).get(), HttpStatus.OK);
       } else
          return new ResponseEntity<>(HttpStatus.NOT_FOUND);
    }
@@ -49,4 +50,20 @@ public class TeamController {
    public @ResponseBody Iterable<Team> getByNameTurma(@RequestParam String description) {
       return teamRepository.findByDescriptionContaining(description);
    }
+
+   // putTurma
+   @PutMapping(path = "/{id}")
+   public ResponseEntity<Team> putTurma(@RequestBody Team newTeam, @PathVariable Integer id) {
+      
+      return teamRepository.findById(id).map(team -> {
+         team.setDescription(newTeam.getDescription());
+         team.setType(newTeam.getType());
+         return new ResponseEntity<Team>(teamRepository.save(team), HttpStatus.OK);
+      }).orElseGet(() -> {
+         newTeam.setId(id);
+         return new ResponseEntity<Team>(teamRepository.save(newTeam), HttpStatus.CREATED);
+      });
+   }
+
+
 }
