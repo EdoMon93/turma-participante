@@ -69,8 +69,11 @@ public class ParticipantController {
    // deleteParticipante
    @DeleteMapping(path = "/{id}")
    public ResponseEntity<String> deleteParticipante(@PathVariable Integer id) {
-      participantRepository.deleteById(id);
-      return new ResponseEntity<String>(HttpStatus.OK);
+      if (participantRepository.findById(id).isPresent()) {
+         participantRepository.deleteById(id);
+         return new ResponseEntity<String>(HttpStatus.OK);
+      } else
+         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
    }
 
    // Get by Name

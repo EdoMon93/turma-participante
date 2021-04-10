@@ -71,8 +71,11 @@ public class TeamController {
    // deleteTurma
    @DeleteMapping(path = "/{id}")
    public ResponseEntity<String> deleteTurma(@PathVariable Integer id) {
-      teamRepository.deleteById(id);
-      return new ResponseEntity<String>(HttpStatus.OK);
+      if (teamRepository.findById(id).isPresent()) {
+         teamRepository.deleteById(id);
+         return new ResponseEntity<String>(HttpStatus.OK);
+      } else
+         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
    }
 
    // Get by Name
