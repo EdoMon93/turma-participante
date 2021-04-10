@@ -80,7 +80,7 @@ public class TeamController {
 
    // Get by Name
    @GetMapping(path = "/search")
-   public @ResponseBody Iterable<Team> getByNameTurma(@RequestParam String description) {
-      return teamRepository.findByDescriptionContaining(description);
+   public @ResponseBody Iterable<Team> getByNameTurma(@RequestParam String name) {
+      return teamRepository.findByDescriptionContaining(name);
    }
 }
