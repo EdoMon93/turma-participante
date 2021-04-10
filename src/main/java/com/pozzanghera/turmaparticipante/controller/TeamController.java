@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,7 +24,7 @@ public class TeamController {
    private TeamRepository teamRepository;
 
    // Post
-   @PostMapping(path = "/new")
+   @PostMapping(path = "/")
    public ResponseEntity<Team> postTurma(@RequestBody Team team) {
       // System.out.println(team);
       teamRepository.save(team);
@@ -45,19 +46,15 @@ public class TeamController {
          return new ResponseEntity<>(HttpStatus.NOT_FOUND);
    }
 
-   // Get by Name
-   @GetMapping(path = "/search")
-   public @ResponseBody Iterable<Team> getByNameTurma(@RequestParam String description) {
-      return teamRepository.findByDescriptionContaining(description);
-   }
-
    // putTurma
    @PutMapping(path = "/{id}")
    public ResponseEntity<Team> putTurma(@RequestBody Team newTeam, @PathVariable Integer id) {
-      
+
       return teamRepository.findById(id).map(team -> {
          team.setDescription(newTeam.getDescription());
          team.setType(newTeam.getType());
+         team.getParticipants().clear();
+         team.getParticipants().addAll(newTeam.getParticipants());
          return new ResponseEntity<Team>(teamRepository.save(team), HttpStatus.OK);
       }).orElseGet(() -> {
          newTeam.setId(id);
@@ -65,5 +62,16 @@ public class TeamController {
       });
    }
 
+   // deleteTurma
+   @DeleteMapping(path = "/{id}")
+   public ResponseEntity<String> deleteTurma(@PathVariable Integer id) {
+      teamRepository.deleteById(id);
+      return new ResponseEntity<String>(HttpStatus.OK);
+   }
 
+   // Get by Name
+   @GetMapping(path = "/search")
+   public @ResponseBody Iterable<Team> getByNameTurma(@RequestParam String description) {
+      return teamRepository.findByDescriptionContaining(description);
+   }
 }

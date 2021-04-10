@@ -20,7 +20,7 @@ public class Team {
 
   private String type;
 
-  @OneToMany(targetEntity = Participant.class, cascade = CascadeType.ALL)
+  @OneToMany(targetEntity = Participant.class, cascade = CascadeType.ALL, orphanRemoval = true)
   @JoinColumn(name = "team_id")
   private List<Participant> participants;
 
