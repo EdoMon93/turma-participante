@@ -1,0 +1,385 @@
+{
+	"info": {
+		"_postman_id": "8b1c2209-6b59-40a0-9534-f9c0dc223454",
+		"name": "turma-participante",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Turma",
+			"item": [
+				{
+					"name": "getAllTurma",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/turma/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"turma",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getByNameTurma",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"turma\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/turma/search?name=turma",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"turma",
+								"search"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "turma"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getByIdTurma",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/turma/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"turma",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "newTurma",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Turma Amarila\",\r\n    \"type\": \"presencial\",\r\n    \"participants\": [\r\n        {\r\n            \"name\": \"Lucas\",\r\n            \"email\": \"lucas@email.com\",\r\n            \"observations\": \"Muito dedicado.\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/turma/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"turma",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "putTurma",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Turma5\",\r\n    \"type\": \"presencial\",\r\n    \"participants\": [\r\n        {\r\n            \"id\":125,\r\n            \"name\": \"nei\",\r\n            \"email\": \"lucas@email.com\",\r\n            \"observations\": \"Muito dedicado.\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/turma/6",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"turma",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteTurma",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"description\": \"Turma Amarila\",\r\n        \"type\": \"presencial\",\r\n        \"participants\": [\r\n            {\r\n                \"name\": \"Lucas\",\r\n                \"email\": \"lucas@email.com\",\r\n                \"observations\": \"Muito dedicado.\"\r\n            }\r\n        ]\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/turma/5",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"turma",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Participante",
+			"item": [
+				{
+					"name": "getAllParticipante",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/participante/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"participante",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getByNameTurma",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"turma\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/turma/search?description=last",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"turma",
+								"search"
+							],
+							"query": [
+								{
+									"key": "description",
+									"value": "last"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getByIdTurma",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/turma/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"turma",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "newParticipante",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Lucas\",\r\n    \"email\": \"lucas@email.com\",\r\n    \"observations\": \"Muito dedicado.\",\r\n    \"team\": {\r\n        \"description\": \"Turma Lucas\",\r\n        \"type\": \"presencial\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/participante/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"participante",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "putParticipante",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Lucas\",\r\n    \"email\": \"lucas@email.com\",\r\n    \"observations\": \"Muito dedicado.\",\r\n    \"team\": {\r\n        \"id\": 83,\r\n        \"description\": \"Turma5\",\r\n        \"type\": \"presencial\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/participante/109",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"participante",
+								"109"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteParticipante",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"description\": \"Turma Amarila\",\r\n        \"type\": \"presencial\",\r\n        \"participants\": [\r\n            {\r\n                \"name\": \"Lucas\",\r\n                \"email\": \"lucas@email.com\",\r\n                \"observations\": \"Muito dedicado.\"\r\n            }\r\n        ]\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/participante/21",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"participante",
+								"21"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
